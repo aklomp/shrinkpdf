@@ -16,6 +16,7 @@ Download the script by clicking the filename at the top of the box. Then run:
 
 This produces a shrunken file named `out.pdf` in the current directory.
 
-Sorry, Windows users; this one is Linux only. Ghostscript does run under
-Windows, but I don't know much about Windows scripting. You could try typing
-all these parameters on the commandline by hand.
+Sorry, Windows users; this one is Linux only. A Windows adaptation of this
+script can be found [on this blog](http://dcm684.us/wp/2013/10/pdf-shrink/).
+It's a bit more user-friendly than my barebones version and also supports
+drag-and-drop.
