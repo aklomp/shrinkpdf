@@ -13,4 +13,4 @@ gs	-q -dNOPAUSE -dBATCH -dSAFER \
 	-dMonoImageDownsampleType=/Bicubic \
 	-dMonoImageResolution=72 \
 	-sOutputFile=out.pdf \
-	 $1
+	"$1"
