@@ -32,7 +32,13 @@ script can be found [on this blog](http://dcm684.us/wp/2013/10/pdf-shrink/).
 It's a bit more user-friendly than my barebones version and also supports
 drag-and-drop.
 
-## License
+## License and acknowledgements
 
 The script is licensed under the [BSD
 3-clause](http://opensource.org/licenses/BSD-3-Clause) license.
+
+I didn't invent the wheel, just packaged it nicely. All credits go to the
+[Ghostscript](http://www.ghostscript.com) team.
+
+Many thanks to Dr. Alun J. Carr for fixing a portability issue on Mac OS X
+regarding leading whitespace in the output of `wc`.
