@@ -39,6 +39,7 @@ shrink ()
 	  -dPDFSETTINGS=/screen			\
 	  -dEmbedAllFonts=true			\
 	  -dSubsetFonts=true			\
+	  -dAutoRotatePages=/None		\
 	  -dColorImageDownsampleType=/Bicubic	\
 	  -dColorImageResolution=72		\
 	  -dGrayImageDownsampleType=/Bicubic	\
