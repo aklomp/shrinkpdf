@@ -23,6 +23,12 @@ You can also provide a second filename for the output:
 ./shrinkpdf.sh in.pdf out.pdf
 ```
 
+And an output resolution in DPI (default is 72 DPI):
+
+```sh
+./shrinkpdf.sh in.pdf out.pdf 90
+```
+
 If both the input and the output are regular files, the script checks if the
 output is actually smaller. If not, it writes a message to `stderr` and copies
 the input over the output.

@@ -41,11 +41,11 @@ shrink ()
 	  -dSubsetFonts=true			\
 	  -dAutoRotatePages=/None		\
 	  -dColorImageDownsampleType=/Bicubic	\
-	  -dColorImageResolution=72		\
+	  -dColorImageResolution=$3		\
 	  -dGrayImageDownsampleType=/Bicubic	\
-	  -dGrayImageResolution=72		\
+	  -dGrayImageResolution=$3		\
 	  -dMonoImageDownsampleType=/Bicubic	\
-	  -dMonoImageResolution=72		\
+	  -dMonoImageResolution=$3		\
 	  -sOutputFile="$2"			\
 	  "$1"
 }
@@ -69,7 +69,7 @@ usage ()
 {
 	echo "Reduces PDF filesize by lossy recompressing with Ghostscript."
 	echo "Not guaranteed to succeed, but usually works."
-	echo "  Usage: $1 infile [outfile]"
+	echo "  Usage: $1 infile [outfile] [resolution_in_dpi]"
 }
 
 IFILE="$1"
@@ -87,6 +87,13 @@ else
 	OFILE="-"
 fi
 
-shrink "$IFILE" "$OFILE" || exit $?
+# Output resolution defaults to 72 unless given:
+if [ ! -z "$3" ]; then
+	res="$3"
+else
+	res="72"
+fi
+
+shrink "$IFILE" "$OFILE" "$res" || exit $?
 
 check_smaller "$IFILE" "$OFILE"
