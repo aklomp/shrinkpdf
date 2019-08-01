@@ -3,7 +3,7 @@
 # http://www.alfredklomp.com/programming/shrinkpdf
 # Licensed under the 3-clause BSD license:
 #
-# Copyright (c) 2014, Alfred Klomp
+# Copyright (c) 2014-2019, Alfred Klomp
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -44,7 +44,7 @@ shrink ()
 	  -dColorImageResolution=$3		\
 	  -dGrayImageDownsampleType=/Bicubic	\
 	  -dGrayImageResolution=$3		\
-	  -dMonoImageDownsampleType=/Bicubic	\
+	  -dMonoImageDownsampleType=/Subsample	\
 	  -dMonoImageResolution=$3		\
 	  -sOutputFile="$2"			\
 	  "$1"
