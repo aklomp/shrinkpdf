@@ -8,10 +8,9 @@ should be (but not always is) a much smaller file.
 
 ## Usage
 
-Download the script by clicking the filename at the top of the box. Make it
-executable. If you run it with no arguments, it prints a usage summary. If you
-run it with a single argument -- the name of the pdf to shrink -- it writes the
-result to `stdout`:
+Download the script and make it executable. If you run it with no arguments, it
+prints a usage summary. If you run it with a single argument -- the name of the
+pdf to shrink -- it writes the result to `stdout`:
 
 ```sh
 ./shrinkpdf.sh in.pdf > out.pdf
@@ -40,8 +39,8 @@ drag-and-drop.
 
 ## License and acknowledgements
 
-The script is licensed under the [BSD
-3-clause](http://opensource.org/licenses/BSD-3-Clause) license.
+The script is licensed under the
+[BSD 3-clause](http://opensource.org/licenses/BSD-3-Clause) license.
 
 I didn't invent the wheel, just packaged it nicely. All credits go to the
 [Ghostscript](http://www.ghostscript.com) team.
