@@ -54,7 +54,7 @@ check_smaller ()
 {
 	# If $1 and $2 are regular files, we can compare file sizes to
 	# see if we succeeded in shrinking. If not, we copy $1 over $2:
-	if [ ! -f "$1" -o ! -f "$2" ]; then
+	if [ ! -f "$1" ] || [ ! -f "$2" ]; then
 		return 0;
 	fi
 	ISIZE="$(echo $(wc -c "$1") | cut -f1 -d\ )"
