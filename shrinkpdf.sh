@@ -41,11 +41,11 @@ shrink ()
 	  -dSubsetFonts=true			\
 	  -dAutoRotatePages=/None		\
 	  -dColorImageDownsampleType=/Bicubic	\
-	  -dColorImageResolution=$3		\
+	  -dColorImageResolution="$3"		\
 	  -dGrayImageDownsampleType=/Bicubic	\
-	  -dGrayImageResolution=$3		\
+	  -dGrayImageResolution="$3"		\
 	  -dMonoImageDownsampleType=/Subsample	\
-	  -dMonoImageResolution=$3		\
+	  -dMonoImageResolution="$3"		\
 	  -sOutputFile="$2"			\
 	  "$1"
 }
