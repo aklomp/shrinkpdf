@@ -1,0 +1,22 @@
+name: Shellcheck
+
+on: [push]
+
+jobs:
+  Shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+
+      # Checkout the code.
+    - name: Checkout
+      uses: actions/checkout@v3
+
+      # Install the dependencies.
+    - name: Install dependencies
+      run: |
+        sudo apt update
+        sudo apt install shellcheck
+
+      # Run Shellcheck.
+    - name: Run Shellcheck
+      run: shellcheck shrinkpdf.sh
