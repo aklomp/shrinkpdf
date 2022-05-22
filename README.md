@@ -46,6 +46,3 @@ The script is licensed under the
 
 I didn't invent the wheel, just packaged it nicely. All credits go to the
 [Ghostscript](http://www.ghostscript.com) team.
-
-Many thanks to Dr. Alun J. Carr for fixing a portability issue on Mac OS X
-regarding leading whitespace in the output of `wc`.

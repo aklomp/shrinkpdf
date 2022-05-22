@@ -41,11 +41,11 @@ shrink ()
 	  -dSubsetFonts=true			\
 	  -dAutoRotatePages=/None		\
 	  -dColorImageDownsampleType=/Bicubic	\
-	  -dColorImageResolution=$3		\
+	  -dColorImageResolution="$3"		\
 	  -dGrayImageDownsampleType=/Bicubic	\
-	  -dGrayImageResolution=$3		\
+	  -dGrayImageResolution="$3"		\
 	  -dMonoImageDownsampleType=/Subsample	\
-	  -dMonoImageResolution=$3		\
+	  -dMonoImageResolution="$3"		\
 	  -sOutputFile="$2"			\
 	  "$1"
 }
@@ -54,11 +54,11 @@ check_smaller ()
 {
 	# If $1 and $2 are regular files, we can compare file sizes to
 	# see if we succeeded in shrinking. If not, we copy $1 over $2:
-	if [ ! -f "$1" -o ! -f "$2" ]; then
+	if [ ! -f "$1" ] || [ ! -f "$2" ]; then
 		return 0;
 	fi
-	ISIZE="$(echo $(wc -c "$1") | cut -f1 -d\ )"
-	OSIZE="$(echo $(wc -c "$2") | cut -f1 -d\ )"
+	ISIZE="$(wc -c "$1" | awk '{ print $1 }')"
+	OSIZE="$(wc -c "$2" | awk '{ print $1 }')"
 	if [ "$ISIZE" -lt "$OSIZE" ]; then
 		echo "Input smaller than output, doing straight copy" >&2
 		cp "$1" "$2"
@@ -81,14 +81,14 @@ if [ -z "$IFILE" ]; then
 fi
 
 # Output filename defaults to "-" (stdout) unless given:
-if [ ! -z "$2" ]; then
+if [ -n "$2" ]; then
 	OFILE="$2"
 else
 	OFILE="-"
 fi
 
 # Output resolution defaults to 72 unless given:
-if [ ! -z "$3" ]; then
+if [ -n "$3" ]; then
 	res="$3"
 else
 	res="72"
