@@ -81,14 +81,14 @@ if [ -z "$IFILE" ]; then
 fi
 
 # Output filename defaults to "-" (stdout) unless given:
-if [ ! -z "$2" ]; then
+if [ -n "$2" ]; then
 	OFILE="$2"
 else
 	OFILE="-"
 fi
 
 # Output resolution defaults to 72 unless given:
-if [ ! -z "$3" ]; then
+if [ -n "$3" ]; then
 	res="$3"
 else
 	res="72"
