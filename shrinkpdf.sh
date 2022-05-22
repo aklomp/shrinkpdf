@@ -1,9 +1,9 @@
 #!/bin/sh
 
-# http://www.alfredklomp.com/programming/shrinkpdf
+# https://github.com/aklomp/shrinkpdf
 # Licensed under the 3-clause BSD license:
 #
-# Copyright (c) 2014-2019, Alfred Klomp
+# Copyright (c) 2014-2022, Alfred Klomp
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
