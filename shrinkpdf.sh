@@ -57,8 +57,8 @@ check_smaller ()
 	if [ ! -f "$1" ] || [ ! -f "$2" ]; then
 		return 0;
 	fi
-	ISIZE="$(echo $(wc -c "$1") | cut -f1 -d\ )"
-	OSIZE="$(echo $(wc -c "$2") | cut -f1 -d\ )"
+	ISIZE="$(wc -c "$1" | awk '{ print $1 }')"
+	OSIZE="$(wc -c "$2" | awk '{ print $1 }')"
 	if [ "$ISIZE" -lt "$OSIZE" ]; then
 		echo "Input smaller than output, doing straight copy" >&2
 		cp "$1" "$2"
