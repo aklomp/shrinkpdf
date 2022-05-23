@@ -1,6 +1,7 @@
 # Shrinkpdf: shrink PDF files with Ghostscript
 
 [![Shellcheck](https://github.com/aklomp/shrinkpdf/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/aklomp/shrinkpdf/actions/workflows/shellcheck.yml)
+[![Test](https://github.com/aklomp/shrinkpdf/actions/workflows/test.yml/badge.svg)](https://github.com/aklomp/shrinkpdf/actions/workflows/test.yml)
 
 A simple wrapper around Ghostscript to shrink PDFs (as in reduce filesize)
 under Linux. Inspired by some code I found in an OpenOffice Python script (I

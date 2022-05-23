@@ -1,0 +1,33 @@
+name: Test
+
+on: [push]
+
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+
+      # Checkout the code.
+    - name: Checkout
+      uses: actions/checkout@v3
+
+      # Install the test dependencies.
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt install ghostscript
+        sudo apt install librsvg2-bin
+        sudo apt install texlive-latex-recommended
+        sudo apt install texlive-latex-extra
+        sudo apt install pandoc
+
+      # Generate a test PDF by using the README as a convenient source.
+    - name: Generate test PDF
+      run: pandoc -s -o orig.pdf README.md
+
+      # Shrink the PDF.
+    - name: Shrink the PDF
+      run: |
+        chmod +x shrinkpdf.sh
+        ./shrinkpdf.sh orig.pdf new.pdf
+        ls -al orig.pdf new.pdf
