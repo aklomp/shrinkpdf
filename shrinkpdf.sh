@@ -76,6 +76,18 @@ check_smaller ()
 	fi
 }
 
+check_overwrite ()
+{
+	# If $1 and $2 refer to the same file, then the file would get
+	# truncated to zero, which is unexpected. Abort the operation.
+	# Unfortunately the stronger `-ef` test is not in POSIX.
+	if [ "$1" = "$2" ]; then
+		echo "The output file is the same as the input file. This would truncate the file." >&2
+		echo "Use a temporary file as an intermediate step." >&2
+		return 1
+	fi
+}
+
 usage ()
 {
 	echo "Reduces PDF filesize by lossy recompressing with Ghostscript."
@@ -127,6 +139,11 @@ else
 	res="72"
 fi
 
+# Check that the output file is not the same as the input file.
+check_overwrite "$IFILE" "$OFILE" || exit $?
+
+# Shrink the PDF.
 shrink "$IFILE" "$OFILE" "$res" || exit $?
 
+# Check that the output is actually smaller.
 check_smaller "$IFILE" "$OFILE"
