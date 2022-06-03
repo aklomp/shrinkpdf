@@ -32,6 +32,16 @@
 
 shrink ()
 {
+	if [ "$grayscale" = "YES" ]; then
+		gray_params="-sProcessColorModel=DeviceGray \
+		             -sColorConversionStrategy=Gray \
+		             -dOverrideICC"
+	else
+		gray_params=""
+	fi
+
+	# Allow unquoted variables; we want word splitting for $gray_params.
+	# shellcheck disable=SC2086
 	gs					\
 	  -q -dNOPAUSE -dBATCH -dSAFER		\
 	  -sDEVICE=pdfwrite			\
@@ -47,6 +57,7 @@ shrink ()
 	  -dMonoImageDownsampleType=/Subsample	\
 	  -dMonoImageResolution="$3"		\
 	  -sOutputFile="$2"			\
+	  ${gray_params}			\
 	  "$1"
 }
 
@@ -69,8 +80,30 @@ usage ()
 {
 	echo "Reduces PDF filesize by lossy recompressing with Ghostscript."
 	echo "Not guaranteed to succeed, but usually works."
-	echo "  Usage: $1 infile [outfile] [resolution_in_dpi]"
+	echo
+	echo "Usage: $1 [-g] [-h] infile [outfile] [resolution_in_dpi]"
+	echo
+	echo "Options:"
+	echo " -g  Enable color->grayscale conversion which can further reduce output size."
+	echo " -h  Show this help text."
 }
+
+while getopts ':hg' flag; do
+  case $flag in
+    h)
+      usage "$0"
+      exit 0
+      ;;
+    g)
+      grayscale="YES"
+      ;;
+    \?)
+      echo "invalid option (use -h for help)"
+      exit 1
+      ;;
+  esac
+done
+shift $((OPTIND - 1))
 
 IFILE="$1"
 

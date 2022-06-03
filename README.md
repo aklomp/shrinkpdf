@@ -31,6 +31,13 @@ And an output resolution in DPI (default is 72 DPI):
 ./shrinkpdf.sh in.pdf out.pdf 90
 ```
 
+Color-to-grayscale conversion can be enabled with the `-g` flag. This can
+sometimes further reduce the output size:
+
+```
+./shrinkpdf.sh -g in.pdf out.pdf 90
+```
+
 If both the input and the output are regular files, the script checks if the
 output is actually smaller. If not, it writes a message to `stderr` and copies
 the input over the output.
