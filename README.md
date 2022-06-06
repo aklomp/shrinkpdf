@@ -11,9 +11,15 @@ should be (but not always is) a much smaller file.
 
 ## Usage
 
-Download the script and make it executable. If you run it with no arguments, it
-prints a usage summary. If you run it with a single argument -- the name of the
-pdf to shrink -- it writes the result to `stdout`:
+Download the script and make it executable:
+
+```sh
+chmod +x shrinkpdf.sh
+```
+
+If you run it with no arguments, it prints a usage summary. If you run it with a
+single argument -- the name of the pdf to shrink -- it writes the result to
+`stdout`:
 
 ```sh
 ./shrinkpdf.sh in.pdf > out.pdf
