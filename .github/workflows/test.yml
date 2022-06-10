@@ -29,5 +29,5 @@ jobs:
     - name: Shrink the PDF
       run: |
         chmod +x shrinkpdf.sh
-        ./shrinkpdf.sh orig.pdf new.pdf
+        ./shrinkpdf.sh -g -r 72 -o new.pdf orig.pdf
         ls -al orig.pdf new.pdf

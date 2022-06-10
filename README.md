@@ -25,24 +25,27 @@ single argument -- the name of the pdf to shrink -- it writes the result to
 ./shrinkpdf.sh in.pdf > out.pdf
 ```
 
-You can also provide a second filename for the output:
+You can optionally provide an output file:
 
 ```sh
-./shrinkpdf.sh in.pdf out.pdf
+./shrinkpdf.sh -o out.pdf in.pdf
 ```
 
 And an output resolution in DPI (default is 72 DPI):
 
 ```sh
-./shrinkpdf.sh in.pdf out.pdf 90
+./shrinkpdf.sh -r 90 -o out.pdf in.pdf
 ```
 
 Color-to-grayscale conversion can be enabled with the `-g` flag. This can
 sometimes further reduce the output size:
 
 ```
-./shrinkpdf.sh -g in.pdf out.pdf 90
+./shrinkpdf.sh -g -r 90 -o out.pdf in.pdf
 ```
+
+Due to limitations of shell option handling, options must always come before
+the input file.
 
 If both the input and the output are regular files, the script checks if the
 output is actually smaller. If not, it writes a message to `stderr` and copies

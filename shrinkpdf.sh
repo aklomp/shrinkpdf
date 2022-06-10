@@ -93,14 +93,22 @@ usage ()
 	echo "Reduces PDF filesize by lossy recompressing with Ghostscript."
 	echo "Not guaranteed to succeed, but usually works."
 	echo
-	echo "Usage: $1 [-g] [-h] infile [outfile] [resolution_in_dpi]"
+	echo "Usage: $1 [-g] [-h] [-o output] [-r res] infile"
 	echo
 	echo "Options:"
-	echo " -g  Enable color->grayscale conversion which can further reduce output size."
+	echo " -g  Enable grayscale conversion which can further reduce output size."
 	echo " -h  Show this help text."
+	echo " -o  Output file, default is standard output."
+	echo " -r  Resolution in DPI, default is 72."
 }
 
-while getopts ':hg' flag; do
+# Set default option values.
+grayscale=""
+ofile="-"
+res="72"
+
+# Parse command line options.
+while getopts ':hgo:r:' flag; do
   case $flag in
     h)
       usage "$0"
@@ -108,6 +116,12 @@ while getopts ':hg' flag; do
       ;;
     g)
       grayscale="YES"
+      ;;
+    o)
+      ofile="${OPTARG}"
+      ;;
+    r)
+      res="${OPTARG}"
       ;;
     \?)
       echo "invalid option (use -h for help)"
@@ -117,33 +131,19 @@ while getopts ':hg' flag; do
 done
 shift $((OPTIND - 1))
 
-IFILE="$1"
-
-# Need an input file:
-if [ -z "$IFILE" ]; then
+# An input file is required.
+if [ -z "$1" ]; then
 	usage "$0"
 	exit 1
-fi
-
-# Output filename defaults to "-" (stdout) unless given:
-if [ -n "$2" ]; then
-	OFILE="$2"
 else
-	OFILE="-"
-fi
-
-# Output resolution defaults to 72 unless given:
-if [ -n "$3" ]; then
-	res="$3"
-else
-	res="72"
+	ifile="$1"
 fi
 
 # Check that the output file is not the same as the input file.
-check_overwrite "$IFILE" "$OFILE" || exit $?
+check_overwrite "$ifile" "$ofile" || exit $?
 
 # Shrink the PDF.
-shrink "$IFILE" "$OFILE" "$res" || exit $?
+shrink "$ifile" "$ofile" "$res" || exit $?
 
 # Check that the output is actually smaller.
-check_smaller "$IFILE" "$OFILE"
+check_smaller "$ifile" "$ofile"
