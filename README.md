@@ -25,13 +25,13 @@ single argument -- the name of the pdf to shrink -- it writes the result to
 ./shrinkpdf.sh in.pdf > out.pdf
 ```
 
-You can optionally provide an output file:
+You can provide an output file with the `-o` option:
 
 ```sh
 ./shrinkpdf.sh -o out.pdf in.pdf
 ```
 
-And an output resolution in DPI (default is 72 DPI):
+And an output resolution in DPI (default is 72 DPI) with the `-r` option:
 
 ```sh
 ./shrinkpdf.sh -r 90 -o out.pdf in.pdf
