@@ -45,7 +45,7 @@ shrink ()
 	gs					\
 	  -q -dNOPAUSE -dBATCH -dSAFER		\
 	  -sDEVICE=pdfwrite			\
-	  -dCompatibilityLevel=1.3		\
+	  -dCompatibilityLevel="$4"		\
 	  -dPDFSETTINGS=/screen			\
 	  -dEmbedAllFonts=true			\
 	  -dSubsetFonts=true			\
@@ -59,6 +59,16 @@ shrink ()
 	  -sOutputFile="$2"			\
 	  ${gray_params}			\
 	  "$1"
+}
+
+get_pdf_version ()
+{
+	# $1 is the input file. The PDF version is contained in the
+	# first 1024 bytes and will be extracted from the PDF file.
+	pdf_version=$(cut -b -1024 "$1" | awk '{ if (match($0, "%PDF-[0-9]\\.[0-9]")) { print substr($0, RSTART + 5, 3); exit } }')
+	if [ -z "$pdf_version" ] || [ "${#pdf_version}" != "3" ]; then
+		return 1
+	fi
 }
 
 check_smaller ()
@@ -142,8 +152,11 @@ fi
 # Check that the output file is not the same as the input file.
 check_overwrite "$ifile" "$ofile" || exit $?
 
+# Get the PDF version of the input file.
+get_pdf_version "$ifile" || pdf_version="1.3"
+
 # Shrink the PDF.
-shrink "$ifile" "$ofile" "$res" || exit $?
+shrink "$ifile" "$ofile" "$res" "$pdf_version" || exit $?
 
 # Check that the output is actually smaller.
 check_smaller "$ifile" "$ofile"
