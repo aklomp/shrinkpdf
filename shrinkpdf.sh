@@ -153,7 +153,7 @@ fi
 check_overwrite "$ifile" "$ofile" || exit $?
 
 # Get the PDF version of the input file.
-get_pdf_version "$ifile" || pdf_version="1.3"
+get_pdf_version "$ifile" || pdf_version="1.5"
 
 # Shrink the PDF.
 shrink "$ifile" "$ofile" "$res" "$pdf_version" || exit $?
