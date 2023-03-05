@@ -71,6 +71,16 @@ get_pdf_version ()
 	fi
 }
 
+
+check_input_file ()
+{
+	# Check if the given file exists.
+	if [ ! -f "$1" ]; then
+		echo "Error: Input file does not exist." >&2
+		return 1
+	fi
+}
+
 check_smaller ()
 {
 	# If $1 and $2 are regular files, we can compare file sizes to
@@ -148,6 +158,9 @@ if [ -z "$1" ]; then
 else
 	ifile="$1"
 fi
+
+# Check if input file exists
+check_input_file "$ifile" || exit $?
 
 # Check that the output file is not the same as the input file.
 check_overwrite "$ifile" "$ofile" || exit $?
