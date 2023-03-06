@@ -74,9 +74,9 @@ get_pdf_version ()
 
 check_input_file () {
 	# Check if $ifile exists
-	if [ ! -f "$ifile" ]; then
+	if [ ! -f "$1" ]; then
 		echo "Error: Input file does not exist." >&2
-		exit 1
+		return 1
 	fi
 }
 
