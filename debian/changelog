@@ -1,0 +1,12 @@
+shrinkpdf (1.1.0) stable; urgency=low
+  Changes since v1.0:
+  Add an optional argument to output a grayscale PDF.
+  #3: Check for equal input and output files to avoid truncation.
+  #4: Update README.md.
+  #5: Replace optional positional arguments with option flags.
+ -- Alfred Klomp <git@alfredklomp.com>  Sat, 11 Jun 2022 01:08:12 +0200
+
+shrinkpdf (1.0.0) stable; urgency=low
+  The shrinkpdf script has been available for a long time on its project website. It has gone through a number of iterations, but was never properly versioned.
+  The script is quite battle-tested by now, so let's create a first official release.
+ -- Alfred Klomp <git@alfredklomp.com>  Mon, 23 May 2022 22:18:29 +0200
