@@ -123,9 +123,14 @@ usage ()
 }
 
 # Set default option values.
-grayscale=""
-ofile="-"
-res="72"
+# shellcheck source=debian/default
+if [ -f "/etc/default/shrinkpdf" ];then
+  . /etc/default/shrinkpdf
+else
+  grayscale=""
+  ofile="-"
+  res="72"
+fi
 
 # Parse command line options.
 while getopts ':hgo:r:' flag; do

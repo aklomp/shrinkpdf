@@ -1,0 +1,5 @@
+# Set default option values.
+grayscale=""
+ofile="-"
+res="72"
+
