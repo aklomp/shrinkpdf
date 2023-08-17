@@ -3,7 +3,7 @@
 # https://github.com/aklomp/shrinkpdf
 # Licensed under the 3-clause BSD license:
 #
-# Copyright (c) 2014-2022, Alfred Klomp
+# Copyright (c) 2014-2023, Alfred Klomp
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -65,12 +65,11 @@ get_pdf_version ()
 {
 	# $1 is the input file. The PDF version is contained in the
 	# first 1024 bytes and will be extracted from the PDF file.
-	pdf_version=$(cut -b -1024 "$1" | awk 'BEGIN { found=0 }{ if (match($0, "%PDF-[0-9]\\.[0-9]") && ! found) { print substr($0, RSTART + 5, 3); found=1 } }')
+	pdf_version=$(cut -b -1024 "$1" | LC_ALL=C awk 'BEGIN { found=0 }{ if (match($0, "%PDF-[0-9]\\.[0-9]") && ! found) { print substr($0, RSTART + 5, 3); found=1 } }')
 	if [ -z "$pdf_version" ] || [ "${#pdf_version}" != "3" ]; then
 		return 1
 	fi
 }
-
 
 check_input_file ()
 {
