@@ -52,13 +52,13 @@ shrink ()
 	  -dAutoRotatePages=/None		\
 	  -dColorImageDownsampleType=/Bicubic	\
 	  -dColorImageResolution="$3"		\
-	  -dColorImageDownsampleThreshold="$5"		\
+	  -dColorImageDownsampleThreshold="$5"	\
 	  -dGrayImageDownsampleType=/Bicubic	\
 	  -dGrayImageResolution="$3"		\
-	  -dGrayImageDownsampleThreshold="$5"		\
+	  -dGrayImageDownsampleThreshold="$5"	\
 	  -dMonoImageDownsampleType=/Subsample	\
 	  -dMonoImageResolution="$3"		\
-	  -dMonoImageDownsampleThreshold="$5"		\
+	  -dMonoImageDownsampleThreshold="$5"	\
 	  -sOutputFile="$2"			\
 	  ${gray_params}			\
 	  "$1"
