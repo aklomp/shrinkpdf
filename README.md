@@ -44,6 +44,15 @@ sometimes further reduce the output size:
 ./shrinkpdf.sh -g -r 90 -o out.pdf in.pdf
 ```
 
+Set the threshold at which an image would be downsampled with the `-t` flag.
+The default of 1.5 means that images which are already less than 1.5x the
+desired dpi will not be resized. (Using `-r 300` and `-t 1.5` would not resize
+images unless they were > 300 * 1.5 dpi, or 450 dpi.) Use lower numbers for
+less leniency and higher numbers for more leniency.
+```sh
+./shrinkpdf.sh -r 300 -t 1.1 -o out.pdf in.pdf
+```
+
 Due to limitations of shell option handling, options must always come before
 the input file.
 
