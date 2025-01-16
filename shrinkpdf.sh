@@ -65,7 +65,7 @@ get_pdf_version ()
 {
 	# $1 is the input file. The PDF version is contained in the
 	# first 1024 bytes and will be extracted from the PDF file.
-	pdf_version=$(cut -b -1024 "$1" | LC_ALL=C awk 'BEGIN { found=0 }{ if (match($0, "%PDF-[0-9]\\.[0-9]") && ! found) { print substr($0, RSTART + 5, 3); found=1 } }')
+	pdf_version=$(head -c 1024 "$1" | LC_ALL=C awk 'BEGIN { found=0 }{ if (match($0, "%PDF-[0-9]\\.[0-9]") && ! found) { print substr($0, RSTART + 5, 3); found=1 } }')
 	if [ -z "$pdf_version" ] || [ "${#pdf_version}" != "3" ]; then
 		return 1
 	fi
