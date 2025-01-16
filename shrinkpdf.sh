@@ -52,10 +52,13 @@ shrink ()
 	  -dAutoRotatePages=/None		\
 	  -dColorImageDownsampleType=/Bicubic	\
 	  -dColorImageResolution="$3"		\
+	  -dColorImageDownsampleThreshold="$5"		\
 	  -dGrayImageDownsampleType=/Bicubic	\
 	  -dGrayImageResolution="$3"		\
+	  -dGrayImageDownsampleThreshold="$5"		\
 	  -dMonoImageDownsampleType=/Subsample	\
 	  -dMonoImageResolution="$3"		\
+	  -dMonoImageDownsampleThreshold="$5"		\
 	  -sOutputFile="$2"			\
 	  ${gray_params}			\
 	  "$1"
@@ -112,22 +115,24 @@ usage ()
 	echo "Reduces PDF filesize by lossy recompressing with Ghostscript."
 	echo "Not guaranteed to succeed, but usually works."
 	echo
-	echo "Usage: $1 [-g] [-h] [-o output] [-r res] infile"
+	echo "Usage: $1 [-g] [-h] [-o output] [-r res] [-t threshold] infile"
 	echo
 	echo "Options:"
 	echo " -g  Enable grayscale conversion which can further reduce output size."
 	echo " -h  Show this help text."
 	echo " -o  Output file, default is standard output."
 	echo " -r  Resolution in DPI, default is 72."
+	echo " -t  Threshold multiplier for an image to qualify for downsampling, default is 1.5"
 }
 
 # Set default option values.
 grayscale=""
 ofile="-"
 res="72"
+threshold="1.5"
 
 # Parse command line options.
-while getopts ':hgo:r:' flag; do
+while getopts ':hgo:r:t:' flag; do
   case $flag in
     h)
       usage "$0"
@@ -141,6 +146,9 @@ while getopts ':hgo:r:' flag; do
       ;;
     r)
       res="${OPTARG}"
+      ;;
+    t)
+      threshold="${OPTARG}"
       ;;
     \?)
       echo "invalid option (use -h for help)"
@@ -168,7 +176,7 @@ check_overwrite "$ifile" "$ofile" || exit $?
 get_pdf_version "$ifile" || pdf_version="1.5"
 
 # Shrink the PDF.
-shrink "$ifile" "$ofile" "$res" "$pdf_version" || exit $?
+shrink "$ifile" "$ofile" "$res" "$pdf_version" "$threshold" || exit $?
 
 # Check that the output is actually smaller.
 check_smaller "$ifile" "$ofile"
