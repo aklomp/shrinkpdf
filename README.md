@@ -17,6 +17,18 @@ Download the script and make it executable:
 chmod +x shrinkpdf.sh
 ```
 
+or you run it within a Docker container
+```sh
+# check out the repo
+git clone git@github.com:aklomp/shrinkpdf.git && cd shrinkpdf
+# build it first
+docker build -t shrinkpdf:local .
+# run it by mounting the current directory
+docker run -it -v $(pwd):/build -w /build shrinkpdf:local bash
+# as the script is stored in /usr/local/bin 
+shrinkpdf.sh in.pdf > out.pdf
+```
+
 If you run it with no arguments, it prints a usage summary. If you run it with a
 single argument -- the name of the pdf to shrink -- it writes the result to
 `stdout`:
