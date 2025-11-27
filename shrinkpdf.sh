@@ -59,6 +59,7 @@ shrink ()
 	  -dMonoImageDownsampleType=/Subsample	\
 	  -dMonoImageResolution="$3"		\
 	  -dMonoImageDownsampleThreshold="$5"	\
+	  -dPreserveAnnots=false		\
 	  -sOutputFile="$2"			\
 	  ${gray_params}			\
 	  "$1"
