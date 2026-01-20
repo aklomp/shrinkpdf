@@ -31,3 +31,12 @@ jobs:
         chmod +x shrinkpdf.sh
         ./shrinkpdf.sh -g -r 72 -o new.pdf orig.pdf
         ls -al orig.pdf new.pdf
+
+      # Shrink the PDF in place.
+    - name: Shrink the PDF in place
+      run: |
+        chmod +x shrinkpdf.sh
+        cp orig.pdf inplace.pdf
+        ls -al inplace.pdf
+        ./shrinkpdf.sh -g -r 72 -i inplace.pdf
+        ls -al inplace.pdf orig.pdf new.pdf
