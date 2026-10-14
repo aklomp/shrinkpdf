@@ -23,8 +23,9 @@ or you run it within a Docker container
 git clone git@github.com:aklomp/shrinkpdf.git && cd shrinkpdf
 # build it first
 docker build -t shrinkpdf:local .
-# run it by mounting the current directory
-docker run -it -v $(pwd):/build -w /build shrinkpdf:local sh
+# run it by mounting the current directory, as your own user so that
+# files in the mount can be read and written
+docker run -it --user "$(id -u):$(id -g)" -v "$(pwd)":/build -w /build shrinkpdf:local sh
 # as the script is stored in /usr/local/bin 
 shrinkpdf.sh in.pdf > out.pdf
 ```
