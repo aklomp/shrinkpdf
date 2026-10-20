@@ -73,11 +73,6 @@ If both the input and the output are regular files, the script checks if the
 output is actually smaller. If not, it writes a message to `stderr` and copies
 the input over the output.
 
-Sorry, Windows users; this one is Linux only. A Windows adaptation of this
-script can be found [on this blog](http://dcm684.us/wp/2013/10/pdf-shrink/).
-It's a bit more user-friendly than my barebones version and also supports
-drag-and-drop.
-
 ## License and acknowledgements
 
 The script is licensed under the
